@@ -1,0 +1,81 @@
+import cv2
+import numpy as np
+
+def desenhar_quadrado(img):
+    # Calcula as coordenadas do centro da imagem
+    centro_x = img.shape[1] // 2
+    centro_y = img.shape[0] // 2
+
+    # Define o tamanho do quadrado
+    tamanho_quadrado = 100
+
+    #define as cores
+    blue = [0, 0, 255]
+    red = [255, 0, 0]
+    black = [0, 0, 0]
+
+    # Calcula as coordenadas dos vértices do quadrado
+    ponto1 = (centro_x - tamanho_quadrado // 2, centro_y - tamanho_quadrado // 2)
+    ponto2 = (centro_x + tamanho_quadrado // 2, centro_y - tamanho_quadrado // 2)
+    ponto3 = (centro_x + tamanho_quadrado // 2, centro_y + tamanho_quadrado // 2)
+    ponto4 = (centro_x - tamanho_quadrado // 2, centro_y + tamanho_quadrado // 2)
+
+    # Desenha os pontos no centro da imagem
+    cv2.circle(img, ponto1, 1, blue, -1)
+    cv2.circle(img, ponto2, 1, red, -1)
+    cv2.circle(img, ponto3, 1, red, -1)
+    cv2.circle(img, ponto4, 1, blue, -1)
+
+
+    # Exibe a imagem
+    cv2.imshow("Quadrado", img)
+
+# Cria uma imagem preta de 600x600 pixels
+img = 0 * np.ones((600, 600, 3), dtype=np.uint8)
+
+# Define o título da janela
+titulo_janela = "Quadrado"
+
+# Exibe a primeira imagem em uma janela com o título especificado
+cv2.imshow(titulo_janela, img)
+
+# Aguarda por uma tecla
+cv2.waitKey(0)
+
+# Fecha a primeira janela
+cv2.destroyAllWindows()
+
+# Cria uma segunda imagem preta de 600x600 pixels
+img2 = 0 * np.ones((600, 600, 3), dtype=np.uint8)
+
+# Desenha o quadrado na segunda imagem
+desenhar_quadrado(img2)
+
+# Aguarda por uma tecla
+cv2.waitKey(0)
+
+# Fecha a primeira janela
+cv2.destroyAllWindows()
+
+# Cria uma segunda imagem preta de 600x600 pixels
+img3 = 0 * np.ones((600, 600, 3), dtype=np.uint8)
+
+# Desenha o quadrado na segunda imagem
+desenhar_quadrado(img3)
+
+for i in range(200):
+    cor = (
+        int((1 - i / 200) * 0 + (i / 200) * 255),  # Gradiente para o canal R
+        int((1 - i / 200) * 0 + (i / 200) * 0),  # Gradiente para o canal G
+        int((1 - i / 200) * 255 + (i / 200) * 0)   # Gradiente para o canal B
+    )
+    # Calcula a posição intermediária ao longo da linha entre ponto1 e ponto2
+    x_intermediario = int(ponto1[0] + (i / 200) * (ponto2[0] - ponto1[0]))
+    y_intermediario = int(ponto1[1] + (i / 200) * (ponto2[1] - ponto1[1]))
+    cv2.circle(img3, (x_intermediario, y_intermediario), 1, cor, -1)
+
+# Aguarda por uma tecla
+cv2.waitKey(0)
+
+# Fecha todas as janelas ao pressionar uma tecla
+cv2.destroyAllWindows()

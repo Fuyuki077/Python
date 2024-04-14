@@ -1,0 +1,12 @@
+grade1 = float(input("Enter the first grade: "))
+grade2 = float(input("Enter the second grade: "))
+grade3 = float(input("Enter the third grade: "))
+
+average = (grade1 + grade2 + grade3) / 3
+
+
+print("A nota média é: %.2f" %average)
+
+email = input('digite seu email: ')
+print("seu email é: ", email)
+print("caracteres: ", len(email))

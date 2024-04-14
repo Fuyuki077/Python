@@ -1,0 +1,8 @@
+A = float(input(print("coloque o 1° algarismo: ")))
+B = float(input(print("coloque o 2° algarismo: ")))
+op = float(input(print("coloque a operação: ")))
+
+op = if '+'
+r = A + B
+else if '-'
+r = A - B
