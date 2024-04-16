@@ -43,28 +43,33 @@ def desenhar_linha_analitica(img, x1, y1, x2, y2, green):
     dx = x2 - x1
     dy = y2 - y1
 
-    if dx == 0:
-        m = None
+    if dx == 0:     # x2-x1 vai ficar zero se x1 == x2 
+        m = None    # Aqui ele configura como não tendo inclinação
     else:
-        m = dy / dx
+        m = dy / dx # Aqui ele configura uma inclinação
 
-    if m is None or abs(m) > 1:
+    if m is None or abs(m) > 1: # Algoritmo pra vertical
         if y2 < y1:
             x1, x2 = x2, x1
             y1, y2 = y2, y1
+
         dx = x2 - x1
         dy = y2 - y1
         x = x1
+
         for y in range(y1, y2 + 1):
             img[y, round(x)] = green
             x += dx / dy
-    else:
+
+    else:                       # Algoritmo pra nao vertical
         if x2 < x1:
             x1, x2 = x2, x1
             y1, y2 = y2, y1
+
         dx = x2 - x1
         dy = y2 - y1
         y = y1
+        
         for x in range(x1, x2 + 1):
             img[round(y), x] = green
             y += dy / dx
