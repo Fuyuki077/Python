@@ -1,0 +1,88 @@
+import cv2
+import numpy as np
+
+def desenhar_linha_dda(img, x1, y1, x2, y2, red):
+    dx = x2 - x1
+    dy = y2 - y1
+
+    if abs(dx) > abs(dy):
+        passos = abs(dx)
+    else:
+        passos = abs(dy)
+
+    x_inc = dx / passos
+    y_inc = dy / passos
+
+    x = x1
+    y = y1
+
+    for i in range(int(passos) + 1):
+        img[int(round(y)), int(round(x))] = red
+        x += x_inc
+        y += y_inc
+
+# Criar uma imagem em branco
+img = np.zeros((48, 48, 3), dtype=np.uint8)
+
+# Coordenadas iniciais e finais da linha
+x1, y1 = 24, 32
+x2, y2 = 16, 16 
+
+# Cor da linha (vermelho)
+red = (0, 0, 255)
+
+# Desenhar linha usando o método DDA
+desenhar_linha_dda(img, x1, y1, x2, y2, red)
+
+# Mostrar imagem
+cv2.imshow("Linha DDA", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+def desenhar_linha_analitica(img, x1, y1, x2, y2, green):
+    dx = x2 - x1
+    dy = y2 - y1
+
+    if dx == 0:
+        m = None
+    else:
+        m = dy / dx
+
+    if m is None or abs(m) > 1:
+        if y2 < y1:
+            x1, x2 = x2, x1
+            y1, y2 = y2, y1
+        dx = x2 - x1
+        dy = y2 - y1
+        x = x1
+        for y in range(y1, y2 + 1):
+            img[y, round(x)] = green
+            x += dx / dy
+    else:
+        if x2 < x1:
+            x1, x2 = x2, x1
+            y1, y2 = y2, y1
+        dx = x2 - x1
+        dy = y2 - y1
+        y = y1
+        for x in range(x1, x2 + 1):
+            img[round(y), x] = green
+            y += dy / dx
+
+# Criar uma imagem em branco
+img = np.zeros((48, 48, 3), dtype=np.uint8)
+
+# Coordenadas iniciais e finais da linha
+x1, y1 = 24, 32
+x2, y2 = 16, 16
+
+# Cor da linha (verde)
+green = (0, 255, 0)
+
+# Desenhar linha usando o método analítico
+desenhar_linha_analitica(img, x1, y1, x2, y2, green)
+
+# Mostrar imagem
+cv2.imshow("Linha Analítica", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
