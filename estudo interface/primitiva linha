@@ -25,8 +25,8 @@ def desenhar_linha_dda(img, x1, y1, x2, y2, red):
 img = np.zeros((48, 48, 3), dtype=np.uint8)
 
 # Coordenadas iniciais e finais da linha
-x1, y1 = 24, 32
-x2, y2 = 16, 16 
+x1, y1 = 4, 32
+x2, y2 = 44, 16 
 
 # Cor da linha (vermelho)
 red = (0, 0, 255)
@@ -78,8 +78,8 @@ def desenhar_linha_analitica(img, x1, y1, x2, y2, green):
 img = np.zeros((48, 48, 3), dtype=np.uint8)
 
 # Coordenadas iniciais e finais da linha
-x1, y1 = 24, 32
-x2, y2 = 16, 16
+x1, y1 = 4, 32
+x2, y2 = 44, 16
 
 # Cor da linha (verde)
 green = (0, 255, 0)
