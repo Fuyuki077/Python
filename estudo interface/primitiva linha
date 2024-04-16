@@ -22,7 +22,7 @@ def desenhar_linha_dda(img, x1, y1, x2, y2, red):
         y += y_inc
 
 # Criar uma imagem em branco
-img = np.zeros((48, 48, 3), dtype=np.uint8)
+img = np.zeros((48, 48, 3), dtype=np.uint16)
 
 # Coordenadas iniciais e finais da linha
 x1, y1 = 4, 32
@@ -75,7 +75,7 @@ def desenhar_linha_analitica(img, x1, y1, x2, y2, green):
             y += dy / dx
 
 # Criar uma imagem em branco
-img = np.zeros((48, 48, 3), dtype=np.uint8)
+img = np.zeros((48, 48, 3), dtype=np.uint16)
 
 # Coordenadas iniciais e finais da linha
 x1, y1 = 4, 32
