@@ -1,0 +1,24 @@
+import cv2
+import numpy as np
+# Define as coordenadas dos pontos inicial e final da linha
+x1, y1 = 50, 50
+x2, y2 = 80, 200
+
+# Cria uma imagem preta
+img = np.zeros((300, 300, 3), dtype=np.uint8)
+
+# Desenha a linha pixel por pixel
+if x2 - x1 == 0:
+    for y in range(y1, y2 + 1):
+        img[x1, y] = (0, 255, 0)
+else:
+    m = (y2 - y1) / (x2 - x1)
+    b = y2 - m * x2
+    for x in range(x1, x2 + 1):
+        y = int(m * x + b)
+        img[y, x] = (0, 255, 0)
+
+# Mostra a imagem com a linha desenhada
+cv2.imshow('Linha', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

@@ -1,0 +1,32 @@
+import numpy as np
+import cv2
+
+# Definindo a cor preta em RGB
+preto = (0, 0, 0)
+# Definindo a cor branca em RGB
+branco = (255, 255, 255)
+
+# Definindo as dimensões da imagem
+largura = 640
+altura = 640
+
+# Criando uma imagem preta
+imagem = np.zeros((altura, largura, 3), dtype=np.uint8)
+
+# Obtendo as coordenadas do centro da imagem
+centro_x = largura // 2
+centro_y = altura // 2
+
+# Definindo o raio do círculo
+raio = 50
+
+# Desenhando a circunferência usando a equação paramétrica
+for t in np.linspace(0, 2*np.pi, 1000):
+    x = int(centro_x + raio * np.cos(t))
+    y = int(centro_y + raio * np.sin(t))
+    imagem[y, x] = branco
+
+# Exibindo a imagem
+cv2.imshow('Circunferência Paramétrica', imagem)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
